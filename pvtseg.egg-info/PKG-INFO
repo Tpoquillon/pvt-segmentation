@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: pvtseg
+Version: 1.0
+Summary: A segmentation pipeline of the pulmonary vascular tree
+Home-page: https://gitlab.in2p3.fr/odyssee.merveille/pvt-segmentation
+Author: Poquillon Titouan
+Author-email: titouan.poquillon@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: Inria License
+Classifier: Operating System :: All
+Description-Content-Type: text/markdown
