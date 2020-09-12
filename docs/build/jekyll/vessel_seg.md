@@ -1,8 +1,8 @@
 ---
-date: '2020-09-11T15:54:56.292Z'
-docname: vesselness
+date: '2020-09-12T17:13:00.795Z'
+docname: vessel_seg
 images: {}
-path: /vesselness
+path: /vessel-seg
 title: pvtseg.vessel_seg module
 ---
 
