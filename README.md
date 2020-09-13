@@ -1,5 +1,5 @@
-# PVT Vesselness
- *PVT (Pulmonary Vascular Tree) Vesselness is a python package for pulmonary vascular tree segmentation. It allows users to build, evaluate and optimise a segmentation model based on random forest. This package was developed for covid patients with lung injuries.* (see french [internship report](/assets/text/Stage_Titouan_.pdf))
+# PVTSEG
+ *Pvtseg (Pulmonary Vascular Tree SEGmentation) is a python package for pulmonary vascular tree segmentation. It allows users to build, evaluate and optimise a segmentation model based on random forest. This package was developed for covid patients with lung injuries.* (see french [internship report](/assets/text/Stage_Titouan_.pdf))
 
 <div style="text-align: center">
 <img src="/assets/images/pvt_couv.png" alt="front image" width="500"/>
@@ -15,17 +15,17 @@
 ## Instalation and Usage
 
 ### Install
-the pvtvesselness package require **python 3.7** or any later vesion.
-For now, one can only install **pvtvesselness** package through wheel files:
+the pvtseg package require **python 3.7** or any later vesion.
+For now, one can only install **pvtseg** package through wheel files:
 
-*   From the [dist directory](/dist) download the .whl file with the desired version (for exemple: *pvtvesselness-1.0-py3-none-any.whl* ),
+*   From the [dist directory](/dist) download the .whl file with the desired version (for exemple: *pvtseg-1.0-py3-none-any.whl* ),
 *   In the the downloaded file directory, install the package with [pip](https://pypi.org/project/pip/), 
 
-        python -m pip install pvtvesselness-1.0-py3-none-any.whl
+        python -m pip install pvtseg-1.0-py3-none-any.whl
 
 *   or
 
-        python3 -m pip install pvtvesselness-1.0-py3-none-any.whl
+        python3 -m pip install pvtseg-1.0-py3-none-any.whl
 
 
 The install may not work on linux without the freeglut package:
@@ -34,8 +34,8 @@ The install may not work on linux without the freeglut package:
    
 ### Usage
 
-The **pvtvesselness** package is composed of 4 modules:
--  *vesselness* (the package main module), to build sgmentations model and performe cross-validations, optimisations and segmentations,
+The **pvtseg** package is composed of 4 modules:
+-  *vessel_seg* (the package main module), to build sgmentations model and performe cross-validations, optimisations and segmentations,
 -  *data_preparation*, to build balanced data,
 -  *evaluation* , to evaluate models segmentation compared to ground truth,
 -  *features_3d*, to build and manage features needed for segmentation.
@@ -49,12 +49,12 @@ This library does not directly use a standard data format. All image file are st
 
 
 ## Short Tutorial
-Here is a quick tutorial to learn how to use the PVT Vesselness library for blood vessel segmentation. Yon can also directly load the [jupyter notebook](Tutorial.ipynb) file for the tutorial.
+Here is a quick tutorial to learn how to use the pvtseg library for blood vessel segmentation. Yon can also directly load the [jupyter notebook](Tutorial.ipynb) file for the tutorial.
 
-## Short segmentation tutoriel with the 3boxes data
+
 ### Introduction
 
-The goal of this tutorial is to discover the functionalities of the PVT Vesselness library. Through a blood vessel  segmentation project with random forest classifier models on a reduced data set called [**3boxes**](https://github.com/Tpoquillon/Tpoquillon.github.io/tree/master/Data/3boxes).
+The goal of this tutorial is to discover the functionalities of the pvtseg library. Through a blood vessel  segmentation project with random forest classifier models on a reduced data set called [**3boxes**](https://github.com/Tpoquillon/Tpoquillon.github.io/tree/master/Data/3boxes).
 
 This dataset is completely annotated. It comes from 3 zooms on different lung area for a CT scan of a Covid-19 patient. A healthy area, a damaged area, and an area bordering the lungs. These three areas have been concatenated to form a single 3d image, on which we will work. We have chosen to do this to make this tutorial simpler and easier to view. During your projects it is likely that you will build datasets from several images, This is why the methods used to build the database from a single image that we will use have their equivalent for multiple image file. 
 
@@ -73,7 +73,7 @@ import matplotlib.pyplot as plt
     
 
 #### Starting the segmentation project
-To organize the image files with which you will be working during the tutorial, we offer a method, [**vessel_seg.BuildDirectoryTree**](https://gitlab.in2p3.fr/odyssee.merveille/pvt-segmentation/-/blob/master/docs/build/jekyll/vesselness.md#pvtsegvessel_segbuilddirectorytreepathmy_data), that will directly build the tree structure of the folders in which these images will be stored. This method can of course be used for other segmentation projects. but you are also free to organize your files as you wish.
+To organize the image files with which you will be working during the tutorial, we offer a method, [**vessel_seg.BuildDirectoryTree**](https://gitlab.in2p3.fr/odyssee.merveille/pvt-segmentation/-/blob/master/docs/build/jekyll/vessel_seg.md#pvtsegvessel_segbuilddirectorytreepathmy_data), that will directly build the tree structure of the folders in which these images will be stored. This method can of course be used for other segmentation projects. but you are also free to organize your files as you wish.
 
 
 ```python
@@ -97,7 +97,7 @@ This method builds a folder containing the following 3 sub-folders:
 
 Download the 4 .npy files from [3boxes](https://github.com/Tpoquillon/Tpoquillon.github.io/tree/master/Data/3boxes) and place them in the Sources folder.
 
-Images for this tutorial are in .npy format ([numpy.ndarray](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html)). Each image is a three-dimensional matrix. The PVT Vesselness library is made to work with this image format.
+Images for this tutorial are in .npy format ([numpy.ndarray](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html)). Each image is a three-dimensional matrix. The pvtseg library is made to work with this image format.
 
 
 
@@ -195,7 +195,7 @@ plt.show()
 In order to be trained or to make predictions on voxels, a random forest classifier model needs features describing these voxels and theire environment. Here we build a small set of 10 features.
 Each feature must be writen in the following format: *'feature_type'\_sigma'scale'*, ex: Gau_sigma2.0 or Lap_sigma1.0
 
-The feature_type indicates the type of filter used to calculate features. The scale indicates the size of structure  the filter will detect. PVT vesselness allows to compute the folowing feature types:
+The feature_type indicates the type of filter used to calculate features. The scale indicates the size of structure  the filter will detect. Pvtseg allows to compute the folowing feature types:
 -  "Gau" for Gaussian filter
 -  "Lap" for Laplacian filter
 -  "HGE1", "HGE2", "HGE3" for 1st, 2nd and 3rd Hessian eigenvalues
