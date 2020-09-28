@@ -1,6 +1,8 @@
 # PVTSEG
  *Pvtseg (Pulmonary Vascular Tree SEGmentation) is a python package for pulmonary vascular tree segmentation. It allows users to build, evaluate and optimise a segmentation model based on random forest. This package was developed for covid patients with lung injuries.* (see french [internship report](/assets/text/Stage_Titouan_.pdf))
 
+ ### THIS IS ONLY A *PREVIEW* OF THE PVTSEG PACKAGE. THE REAL PACKAGE WITH WORKING LINKS IS ON A *[gitlab.in2p3.fr](https://gitlab.in2p3.fr/odyssee.merveille/pvt-segmentation/-/tree/master)* REPOSITORY. IT IS, FOR THE MOMENT, A PRIVATE REPOSITORY.
+
 <div style="text-align: center">
 <img src="/assets/images/pvt_couv.png" alt="front image" width="500"/>
 </div>
